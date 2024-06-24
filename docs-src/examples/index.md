@@ -1,34 +1,40 @@
 ---
 layout: example.11ty.cjs
-title: <my-element> ⌲ Examples ⌲ Basic
+title: <stat-display> ⌲ Examples ⌲ Basic
 tags: example
 name: Basic
 description: A basic example
 ---
 
 <style>
-  my-element p {
-    border: solid 1px blue;
-    padding: 8px;
-  }
+	stat-display::part(wrapper) {
+  	border: 2px dotted orange;
+	}
+	stat-display::part(name) {
+  	color: purple;
+	}
+	stat-display::part(value) {
+  	color: green;
+	}
 </style>
-<my-element>
-  <p>This is child content</p>
-</my-element>
+<stat-display name="Int" value="18"></stat-display>
 
 <h3>CSS</h3>
 
 ```css
-p {
-  border: solid 1px blue;
-  padding: 8px;
+stat-display::part(wrapper) {
+  border: 2px dotted orange;
+}
+stat-display::part(name) {
+  color: purple;
+}
+stat-display::part(value) {
+  color: green;
 }
 ```
 
 <h3>HTML</h3>
 
 ```html
-<my-element>
-  <p>This is child content</p>
-</my-element>
+<stat-display name="Int" value="18"></stat-display>
 ```
