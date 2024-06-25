@@ -15,11 +15,13 @@ suite('stat-display', () => {
   });
 
   test('renders with default values', async () => {
-    const el = await fixture(html`<stat-display name="HP" value="4"></stat-display>`);
+    const el = await fixture(
+      html`<stat-display name="HP" value="4"></stat-display>`
+    );
     assert.shadowDom.equal(
       el,
       `
-      <div class="wrap">
+      <div class="wrapper" part="wrapper">
 				<h1 part="name">HP</h1>
 				<button part="value">
 					4
@@ -30,9 +32,15 @@ suite('stat-display', () => {
   });
 
   test('handles a click', async () => {
-		let clickedCount = 0;
-		const clickHandler = () => clickedCount++;
-    const el = await fixture(html`<stat-display @value-clicked=${clickHandler} name="AC" value="12"></stat-display>`);
+    let clickedCount = 0;
+    const clickHandler = () => clickedCount++;
+    const el = await fixture(
+      html`<stat-display
+        @value-clicked=${clickHandler}
+        name="AC"
+        value="12"
+      ></stat-display>`
+    );
     const button = el.shadowRoot?.querySelector('button');
     button?.click();
     // @ts-ignore
@@ -41,18 +49,20 @@ suite('stat-display', () => {
     //   el,
     //   `
     //   <div class="wrap">
-		// 		<h1 part="name">HP</h1>
-		// 		<button part="value">
-		// 			4
-		// 		</button>
-		// 	</div>
+    // 		<h1 part="name">HP</h1>
+    // 		<button part="value">
+    // 			4
+    // 		</button>
+    // 	</div>
     // `
     // );
-		assert.equal(clickedCount, 1);
+    assert.equal(clickedCount, 1);
   });
 
   test('styling applied', async () => {
-    const el = await fixture(html`<stat-display name="Init" value="+1"></stat-display>`);
+    const el = await fixture(
+      html`<stat-display name="Init" value="+1"></stat-display>`
+    );
     // @ts-ignore
     await el.updateComplete;
     assert.equal(getComputedStyle(el).marginTop, '0px');
